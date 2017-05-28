@@ -4,7 +4,12 @@ import UserSchema from './schemas/UserSchema';
 import ProjectSchema from './schemas/ProjectSchema';
 import ActivitySchema from './schemas/ActivitySchema';
 
-import { Id, User, Activity, PromoteActivityInput, PromoteActivityPayload, ActivityState, Project, UserRepository, ProjectRepository, ActivityRepository, AddActivityInput, AssignActivityInput } from '../model/UserModel';
+import {
+	Id, User, Activity,
+	CreateUserInput, CreateUserPayload,
+	CreateProjectInput, CreateProjectPayload,
+	PromoteActivityInput, PromoteActivityPayload, ActivityState, Project, UserRepository, ProjectRepository, ActivityRepository, AddActivityInput, AssignActivityInput
+} from '../model/UserModel';
 
 const RootQuery = `
 	type RootQuery {
@@ -46,7 +51,31 @@ const Mutations = `
 		activity: Activity!
 	}
 
+	input CreateUserInput {
+		login: String!,
+		name: String!,
+		email: String
+	}
+
+	type CreateUserPayload {
+		newUser: User!
+	}
+
+	input CreateProjectInput {
+		key: String!,
+		title: String!,
+		description: String!,
+		ownerId: ID!
+	}
+
+	type CreateProjectPayload {
+		newProject: Project!
+	}
+
 	type Mutations {
+		createUser(input: CreateUserInput): CreateUserPayload!
+		createProject(input: CreateProjectInput): CreateProjectPayload!
+
 		addActivity(input: AddActivityInput): AddActivityPayload!
 		assignActivity(input: AssignActivityInput): AssignActivityPayload!
 		promoteActivity(input: PromoteActivityInput): PromoteActivityPayload!
@@ -71,6 +100,12 @@ const resolveFunctions = {
 		},
 		promoteActivity(_: {}, { input }: { input: PromoteActivityInput }): PromoteActivityPayload {
 			return ActivityRepository.promoteActivity(input.activityId);
+		},
+		createUser(_: {}, { input }: { input: CreateUserInput }): CreateUserPayload {
+			return { newUser: UserRepository.createUser(input) };
+		},
+		createProject(_: {}, { input }: { input: CreateProjectInput }): CreateProjectPayload {
+			return { newProject: ProjectRepository.createProject(input) };
 		}
 	},
 

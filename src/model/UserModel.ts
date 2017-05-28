@@ -13,6 +13,16 @@ class User {
 	}
 }
 
+type CreateUserInput = {
+	login: string,
+	name: string,
+	email: string
+}
+
+type CreateUserPayload = {
+	newUser: User
+}
+
 
 // http://angularfirst.com/typescript-string-enums/
 const ActivityState = {
@@ -39,8 +49,8 @@ type PromoteActivityInput = {
 }
 
 type PromoteActivityPayload = {
-		promoteSuccessful: boolean,
-		activity: Activity
+	promoteSuccessful: boolean,
+	activity: Activity
 }
 
 class Activity {
@@ -77,6 +87,19 @@ class Project {
 	}
 
 }
+
+type CreateProjectInput = {
+	key: string,
+	title: string,
+	description: string,
+	ownerId: Id
+};
+
+type CreateProjectPayload = {
+	newProject: Project
+}
+
+
 
 const USERS = [
 	new User('U1', 'nils', 'Nils', 'nils@nilshartmann.net'),
@@ -115,6 +138,11 @@ const ACTIVITIES = [
 ]
 
 const UserRepository = {
+	createUser: ({ email, login, name }: CreateUserInput): User => {
+		const newUser = new User(newId('U'), login, name, email);
+		USERS.push(newUser);
+		return newUser;
+	},
 	getById: (id: Id): User => {
 		const user = USERS.find(user => user.id === id);
 		if (!user) {
@@ -201,6 +229,14 @@ const ActivityRepository = {
 // fasdfsadf
 
 const ProjectRepository = {
+	createProject: ({ description, key, ownerId, title }: CreateProjectInput): Project => {
+		const owner = UserRepository.getById(ownerId);
+
+		const newProject = new Project(newId('P'), key, title, description, owner);
+		PROJECTS.push(newProject);
+		return newProject;
+	},
+
 	findAll: (): Project[] => [...PROJECTS],
 	getById: (id: Id): Project => {
 		const project = PROJECTS.find(p => p.id === id);
@@ -223,6 +259,12 @@ export {
 	UserRepository,
 	ProjectRepository,
 	ActivityRepository,
+
+	CreateUserInput,
+	CreateUserPayload,
+
+	CreateProjectInput,
+	CreateProjectPayload,
 
 	AssignActivityInput,
 	ActivityState,

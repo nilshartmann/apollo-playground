@@ -19,3 +19,11 @@ mutation
 	{promoteActivity(input: {activityId:"A3"})
     {promoteSuccessful activity { id, state, nextAction}}
   }
+
+
+	mutation
+	{createUser(input:{login: "xxx", email: "a@b", name: "Xxx"}) {newUser {id, name, login}}}
+mutation {
+  createProject(input:
+    {key:"PRO1", title:"A Project", description: "What else?", ownerId:"U100"})
+  {newProject {id, key, owner { id, name, login, projects { id, key } } } } }

@@ -1,0 +1,21 @@
+mutation {
+  addActivity(input: {title: "New Activity", description: "Lets go", projectId: "P1", creatorId: "U1"}) {
+    newActivity {
+      id
+    }
+  }
+}
+
+query {project(id:"P1") {activities {id, title, assignee { id, name }}}}
+
+mutation {assignActivity(input:{activityId: "A2" assigneeId: "U3"}) {activity {id, title}}}
+
+
+query {
+  projects {activities {id, state, nextAction }}
+}
+
+mutation
+	{promoteActivity(input: {activityId:"A3"})
+    {promoteSuccessful activity { id, state, nextAction}}
+  }

@@ -10,8 +10,10 @@ type Activity {
 		title: String!,
 		description: String!,
 		project: Project!,
-		creator: User!
+		creator: User!,
+		assignee: User!
 		state: ActivityState!
+		nextAction: String
   }
 `;
 

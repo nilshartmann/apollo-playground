@@ -16,6 +16,7 @@
 		"graphql-tools": "^0.11.0"
 	},
 	"devDependencies": {
+		"@playlyfe/gql": "^2.3.0",
 		"nodemon": "^1.11.0",
 		"ts-node": "^3.0.4",
 		"typescript": "^2.3.3"

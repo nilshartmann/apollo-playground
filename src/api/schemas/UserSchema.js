@@ -4,7 +4,8 @@ type User {
 		login: String!,
 		name: String!,
 		email: String,
-		projects: [Project]
+		projects: [Project],
+		activities: [Activity]
   }
 `;
 

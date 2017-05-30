@@ -23,6 +23,16 @@ type CreateUserPayload = {
 	newUser: User
 }
 
+type UpdateUserInput = {
+	id: Id,
+	name: string,
+	email: string
+}
+
+type UpdateUserPayload = {
+	updatedUser: User
+}
+
 
 // http://angularfirst.com/typescript-string-enums/
 const ActivityState = {
@@ -99,6 +109,16 @@ type CreateProjectPayload = {
 	newProject: Project
 }
 
+type UpdateProjectInput = {
+	id: Id,
+	title: string,
+	description: string
+};
+
+type UpdateProjectPayload = {
+	updatedProject: Project
+}
+
 
 
 const USERS = [
@@ -143,6 +163,15 @@ const UserRepository = {
 		USERS.push(newUser);
 		return newUser;
 	},
+	updateUser: ({ id, email, name }: UpdateUserInput): User => {
+		const user = UserRepository.getById(id);
+
+		user.email = email;
+		user.name = name;
+
+		return user;
+	},
+
 	getById: (id: Id): User => {
 		const user = USERS.find(user => user.id === id);
 		if (!user) {
@@ -236,6 +265,14 @@ const ProjectRepository = {
 		PROJECTS.push(newProject);
 		return newProject;
 	},
+	updateProject: ({ id, description, title }: UpdateProjectInput): Project => {
+		const project = ProjectRepository.getById(id);
+
+		project.description = description;
+		project.title = title;
+
+		return project;
+	},
 
 	findAll: (): Project[] => [...PROJECTS],
 	getById: (id: Id): Project => {
@@ -262,9 +299,13 @@ export {
 
 	CreateUserInput,
 	CreateUserPayload,
+	UpdateUserInput,
+	UpdateUserPayload,
 
 	CreateProjectInput,
 	CreateProjectPayload,
+	UpdateProjectInput,
+	UpdateProjectPayload,
 
 	AssignActivityInput,
 	ActivityState,

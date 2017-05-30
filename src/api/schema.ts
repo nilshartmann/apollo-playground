@@ -7,7 +7,9 @@ import ActivitySchema from './schemas/ActivitySchema';
 import {
 	Id, User, Activity,
 	CreateUserInput, CreateUserPayload,
+	UpdateUserInput, UpdateUserPayload,
 	CreateProjectInput, CreateProjectPayload,
+	UpdateProjectInput, UpdateProjectPayload,
 	PromoteActivityInput, PromoteActivityPayload, ActivityState, Project, UserRepository, ProjectRepository, ActivityRepository, AddActivityInput, AssignActivityInput
 } from '../model/UserModel';
 
@@ -54,12 +56,24 @@ const Mutations = `
 	input CreateUserInput {
 		login: String!,
 		name: String!,
-		email: String
+		email: String!
 	}
 
 	type CreateUserPayload {
 		newUser: User!
 	}
+
+	input UpdateUserInput {
+		id: ID!,
+
+		name: String!
+		email: String
+	}
+
+	type UpdateUserPayload {
+		updatedUser: User!
+	}
+
 
 	input CreateProjectInput {
 		key: String!,
@@ -72,13 +86,26 @@ const Mutations = `
 		newProject: Project!
 	}
 
-	type Mutations {
-		createUser(input: CreateUserInput): CreateUserPayload!
-		createProject(input: CreateProjectInput): CreateProjectPayload!
+	input UpdateProjectInput {
+		id: ID!,
+		title: String!,
+		description: String!
+	}
 
-		addActivity(input: AddActivityInput): AddActivityPayload!
-		assignActivity(input: AssignActivityInput): AssignActivityPayload!
-		promoteActivity(input: PromoteActivityInput): PromoteActivityPayload!
+	type UpdateProjectPayload {
+		updatedProject: Project!
+	}
+
+	type Mutations {
+		createUser(input: CreateUserInput!): CreateUserPayload!
+		updateUser(input: UpdateUserInput!): UpdateUserPayload!
+
+		createProject(input: CreateProjectInput!): CreateProjectPayload!
+		updateProject(input: UpdateProjectInput!): UpdateProjectPayload!
+
+		addActivity(input: AddActivityInput!): AddActivityPayload!
+		assignActivity(input: AssignActivityInput!): AssignActivityPayload!
+		promoteActivity(input: PromoteActivityInput!): PromoteActivityPayload!
 	}
 `;
 
@@ -104,8 +131,14 @@ const resolveFunctions = {
 		createUser(_: {}, { input }: { input: CreateUserInput }): CreateUserPayload {
 			return { newUser: UserRepository.createUser(input) };
 		},
+		updateUser(_: {}, { input }: { input: UpdateUserInput }): UpdateUserPayload {
+			return { updatedUser: UserRepository.updateUser(input)}
+		},
 		createProject(_: {}, { input }: { input: CreateProjectInput }): CreateProjectPayload {
 			return { newProject: ProjectRepository.createProject(input) };
+		},
+		updateProject(_: {}, { input }: { input: UpdateProjectInput }): UpdateProjectPayload {
+			return { updatedProject: ProjectRepository.updateProject(input) };
 		}
 	},
 

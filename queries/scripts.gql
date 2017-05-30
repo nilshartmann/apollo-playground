@@ -27,3 +27,13 @@ mutation {
   createProject(input:
     {key:"PRO1", title:"A Project", description: "What else?", ownerId:"U100"})
   {newProject {id, key, owner { id, name, login, projects { id, key } } } } }
+
+
+
+mutation {updateUser
+ (input: {id: "U1" name: "Klaus-Dieter" email: "kd@mail.net"})
+  {updatedUser {id, login, name, email}}}
+
+mutation {updateProject
+ (input: {id: "P1" title: "My Project" description: "My very new project"})
+  {updatedProject {id, key, title, description}}}

@@ -6,9 +6,12 @@ mutation {
   }
 }
 
+
 query {projects {id,
   owner {id, login, name, email},
-  activities { id, title, state, creator { login }}
+
+  activities { id, title, state, creator { login },
+  assignee { id }}
 }}
 
 query {project(id:"P1") {activities {id, title, assignee { id, name }}}}

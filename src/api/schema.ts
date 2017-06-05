@@ -1,5 +1,5 @@
 import { makeExecutableSchema } from 'graphql-tools';
-
+import {  Repositories } from '../app-types';
 import UserSchema from './schemas/UserSchema';
 import ProjectSchema from './schemas/ProjectSchema';
 import ActivitySchema from './schemas/ActivitySchema';
@@ -11,7 +11,7 @@ import {
 	CreateProjectInput, CreateProjectPayload,
 	UpdateProjectInput, UpdateProjectPayload,
 	PromoteActivityInput, PromoteActivityPayload, ActivityState, Project, UserRepository, ProjectRepository, ActivityRepository, AddActivityInput, AssignActivityInput
-} from '../model/UserModel';
+} from '../domain';
 
 const RootQuery = `
 	type RootQuery {
@@ -117,87 +117,94 @@ const SchemaDefinition = `
   }
 `;
 
-const resolveFunctions = {
-	Mutations: {
-		addActivity(_: {}, { input }: { input: AddActivityInput }) {
-			return { newActivity: ActivityRepository.addActivity(input) }
-		},
-		assignActivity(_: {}, { input }: { input: AssignActivityInput }) {
-			return { activity: ActivityRepository.assignActivity(input.activityId, input.assigneeId) }
-		},
-		promoteActivity(_: {}, { input }: { input: PromoteActivityInput }): PromoteActivityPayload {
-			return ActivityRepository.promoteActivity(input.activityId);
-		},
-		createUser(_: {}, { input }: { input: CreateUserInput }): CreateUserPayload {
-			return { newUser: UserRepository.createUser(input) };
-		},
-		updateUser(_: {}, { input }: { input: UpdateUserInput }): UpdateUserPayload {
-			return { updatedUser: UserRepository.updateUser(input)}
-		},
-		createProject(_: {}, { input }: { input: CreateProjectInput }): CreateProjectPayload {
-			return { newProject: ProjectRepository.createProject(input) };
-		},
-		updateProject(_: {}, { input }: { input: UpdateProjectInput }): UpdateProjectPayload {
-			return { updatedProject: ProjectRepository.updateProject(input) };
-		}
-	},
+const createResolveFunctions = ({userRepository, projectRepository, activityRepository}: Repositories) => {
 
-	RootQuery: {
-		user(obj: any, { id }: { id: Id }) {
-			return UserRepository.findById(id);
-		},
-		project(obj: any, { id }: { id: Id }) {
-			return ProjectRepository.findById(id);
-		},
-		projects() {
-			return ProjectRepository.findAll();
-		}
-	},
-
-	User: {
-		projects(obj: User) {
-			return ProjectRepository.projectsForUser(obj.id);
-		},
-		activities(user: User) {
-			return ActivityRepository.findForUser(user.id)
-		}
-	},
-	Project: {
-		owner(object: Project) {
-			return UserRepository.findById(object.userId)
-		},
-
-		activities(project: Project) {
-			return ActivityRepository.findForProject(project);
-		}
-	},
-	Activity: {
-		creator(activity: Activity) {
-			return UserRepository.findById(activity.creatorId)
-		},
-		project(activity: Activity) {
-			return ProjectRepository.findById(activity.projectId)
-		},
-		assignee(activity: Activity) {
-			return UserRepository.findById(activity.assigneeId)
-		},
-		nextAction(activity: Activity) {
-			switch (activity.state) {
-				case ActivityState.CREATED:
-					return "Start Activity"
-				case ActivityState.STARTED:
-					return "Finish Activity"
-				default:
-					return null
+	return {
+		Mutations: {
+			addActivity(_: {}, { input }: { input: AddActivityInput }) {
+				return { newActivity: activityRepository.addActivity(input) }
+			},
+			assignActivity(_: {}, { input }: { input: AssignActivityInput }) {
+				return { activity: activityRepository.assignActivity(input.activityId, input.assigneeId) }
+			},
+			promoteActivity(_: {}, { input }: { input: PromoteActivityInput }): PromoteActivityPayload {
+				return activityRepository.promoteActivity(input.activityId);
+			},
+			createUser(_: {}, { input }: { input: CreateUserInput }): CreateUserPayload {
+				return { newUser: userRepository.createUser(input) };
+			},
+			updateUser(_: {}, { input }: { input: UpdateUserInput }): UpdateUserPayload {
+				return { updatedUser: userRepository.updateUser(input) }
+			},
+			createProject(_: {}, { input }: { input: CreateProjectInput }): CreateProjectPayload {
+				return { newProject: projectRepository.createProject(input) };
+			},
+			updateProject(_: {}, { input }: { input: UpdateProjectInput }): UpdateProjectPayload {
+				return { updatedProject: projectRepository.updateProject(input) };
 			}
-		}
+		},
 
-	}
+		RootQuery: {
+			user(obj: any, { id }: { id: Id }) {
+				return userRepository.findById(id);
+			},
+			project(obj: any, { id }: { id: Id }) {
+				return projectRepository.findById(id);
+			},
+			projects() {
+				return projectRepository.findAll();
+			}
+		},
+
+		User: {
+			projects(obj: User) {
+				return projectRepository.projectsForUser(obj.id);
+			},
+			activities(user: User) {
+				return activityRepository.findForUser(user.id)
+			}
+		},
+		Project: {
+			async owner(object: Project) {
+				return await userRepository.findById(object.userId)
+			},
+
+			activities(project: Project) {
+				return activityRepository.findForProject(project);
+			}
+		},
+		Activity: {
+			creator(activity: Activity) {
+				return userRepository.findById(activity.creatorId)
+			},
+			project(activity: Activity) {
+				return projectRepository.findById(activity.projectId)
+			},
+			assignee(activity: Activity) {
+				return userRepository.findById(activity.assigneeId)
+			},
+			nextAction(activity: Activity) {
+				switch (activity.state) {
+					case ActivityState.CREATED:
+						return "Start Activity"
+					case ActivityState.STARTED:
+						return "Finish Activity"
+					default:
+						return null
+				}
+			}
+
+		}
+	};
+}
+
+const createSchema = (repositories: Repositories) => {
+	return makeExecutableSchema({
+		typeDefs: [
+			SchemaDefinition, RootQuery, Mutations, UserSchema, ProjectSchema, ActivitySchema
+		],
+		resolvers: createResolveFunctions(repositories),
+	})
 };
 
-export default makeExecutableSchema({
-	typeDefs: [
-		SchemaDefinition, RootQuery, Mutations, UserSchema, ProjectSchema, ActivitySchema
-	],
-	resolvers: resolveFunctions,
-});
+export default createSchema;

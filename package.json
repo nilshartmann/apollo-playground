@@ -17,7 +17,9 @@
 	},
 	"devDependencies": {
 		"@playlyfe/gql": "^2.3.0",
+		"apollo-codegen": "^0.10.13",
 		"nodemon": "^1.11.0",
+		"rimraf": "^2.6.1",
 		"ts-node": "^3.0.4",
 		"typescript": "^2.3.3"
 	}

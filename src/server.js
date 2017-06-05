@@ -2,7 +2,13 @@ import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import { graphqlExpress } from 'graphql-server-express';
 import { graphiqlExpress } from 'graphql-server-express';
-import schema from './api/schema';
+import initDemoModel from './initDemoModel';
+import createSchema from './api/schema';
+
+const repositories = initDemoModel();
+const schema = createSchema(repositories);
+
+
 
 const PORT = 3000;
 var app = express();

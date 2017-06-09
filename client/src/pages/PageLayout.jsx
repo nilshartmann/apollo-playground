@@ -14,5 +14,8 @@ const PageLayout = ({ username, children }) => <div className="Page">
 	<div className="Main">
 		{children}
 	</div>
+	<footer>
+		&nbsp;
+	</footer>
 </div>;
 export default PageLayout;

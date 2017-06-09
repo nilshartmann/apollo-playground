@@ -1,0 +1,182 @@
+$orange: #bab2b5;
+$darkorange: #ac3b61;
+$midgray: rgb(208, 208, 208);
+
+// http://www.awwwards.com/sites/chordsurfer
+// $th-bg-color:#fa7c92;
+// $tr-odd-bg-color: #6ec4db;
+// $tr-even-bg-color: rgba($tr-odd-bg-color, 0.7);
+
+$color-one: #385787;
+$color-two: #55C0AC;
+$color-three: #F1E9B1;
+$color-four: #EF9665;
+$color-five: #F44267;
+
+$th-bg-color: #F44267;
+$tr-odd-bg-color: #385787;
+$tr-even-bg-color:  rgba(#385787, 0.4);
+
+$bg-color: #55C0AC;
+$bg-color-mount: lighten($bg-color, 42%);
+
+$header-color: lighten($bg-color, 42%);;
+$header-bg-color: $color-five;
+
+
+
+// $th-bg-color: ;
+// $tr-odd-bg-color: ;
+// $tr-even-bg-color:  ;
+
+// $orange: #bab2b5;
+// $darkorange: #ac3b61;
+// $midgray: rgb(208, 208, 208);
+
+// $th-bg-color:#ac3b61;
+// $tr-odd-bg-color: #eee2dc;
+// $tr-even-bg-color: #bab2b5;
+
+// $th-bg-color: rgba($darkorange, 0.7);
+// $tr-odd-bg-color: rgba($orange, 0.7);
+// $tr-even-bg-color: rgba($orange, 0.5);
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    margin-top: 2rem;
+    width: 100%;
+    color: rgba(0, 0, 0, 0.6);
+    background-color: $bg-color;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.2rem;
+}
+
+#mount {
+    width: 1200px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: $bg-color-mount;
+}
+
+
+header {
+  display: flex;
+  justify-content: space-between;
+
+	color: $header-color;
+	background-color: $header-bg-color;
+	padding: 0.5rem 1rem;
+
+	h1 {
+		flex: auto;
+		font-size: 1rem;
+		text-transform: uppercase;
+		letter-spacing: 2px;
+	}
+
+	.MenuItem {
+		padding-top: 0;
+		padding-bottom: 0;
+		height: 100%;
+		margin: auto 0 auto 1rem;
+		padding-left: 1rem;
+		padding-right: 1rem;
+
+		font-size: 90%;
+
+		background-color: lighten($header-bg-color, 10%)
+
+	}
+}
+
+
+.Main {
+	padding: 1rem;
+}
+
+
+table {
+    width: 100%;
+    border-spacing: 0;
+}
+
+thead {
+    width: 100%;
+    color: #FEFFF2;
+}
+
+th, td {
+    text-align: left;
+    font-weight: normal;
+    margin: 0;
+    padding: 0.5rem;
+    border: 0;
+}
+
+
+th {
+    background-color: $th-bg-color;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+		text-transform: uppercase;
+}
+
+
+tr:nth-child(odd) {
+    background-color: $tr-odd-bg-color;
+}
+
+tr:nth-child(even) {
+    background-color: $tr-even-bg-color;
+}
+
+td {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+
+
+.Left {
+    width: 50%;
+    float: left;
+}
+
+.Right {
+    width: 50%;
+    float: left;
+}
+
+.Title {
+    display: flex;
+    display: -webkit-flex; /* Safari */
+    justify-content: space-between;
+
+    border-bottom: 3px solid rgba($darkorange, 0.7);
+    padding: 0 0 0.5rem 0;
+    margin: 0 0 1.5rem;
+
+}
+
+h1 {
+    flex: auto;
+    margin: 0;
+    padding: 0;
+}
+
+/* http://nicolasgallagher.com/micro-clearfix-hack */
+.Main:before,
+.Main:after,
+.Title:before,
+.Title:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.Main:after,
+.Title:after {
+    clear: both;
+}

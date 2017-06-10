@@ -4,7 +4,7 @@ import PageLayout from './../PageLayout';
 
 const Overview = ({ username }) => console.log('OVERVIEW') || <PageLayout username={username}>
 	<div className="Main">
-		<table>
+		<table className="SelectableTable">
 			<thead>
 				<tr>
 					<th>Project</th>
@@ -36,6 +36,11 @@ const Overview = ({ username }) => console.log('OVERVIEW') || <PageLayout usern
 
 			</tbody>
 		</table>
+
+		<div className="RightAlign">
+			<button>Add Project</button>
+		</div>
+
 	</div>
 </PageLayout>;
 

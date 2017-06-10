@@ -16,17 +16,25 @@ $color-five: #F44267;
 $bg-color: #55C0AC;
 $bg-color-mount: lighten($bg-color, 42%);
 
+$button-bg-color: $color-one;
+$button-color: lighten($bg-color, 42%);
 
 
-$header-color: lighten($bg-color, 42%);;
+
+$header-color: lighten($bg-color, 42%);
 $header-bg-color: $color-five;
 
 
-$th-bg-color: lighten($color-one, 20%);
+$th-bg-color: $color-four;
 $th-color: $bg-color-mount;
-$tr-odd-bg-color: lighten($color-one, 40%);
-$tr-even-bg-color:  lighten($color-one, 40%);
+$tr-odd-bg-color: lighten($th-bg-color, 20%);
+$tr-even-bg-color:  lighten($th-bg-color, 20%);
 
+
+// $th-bg-color: lighten($color-one, 20%);
+// $th-color: $bg-color-mount;
+// $tr-odd-bg-color: lighten($color-one, 40%);
+// $tr-even-bg-color:  lighten($color-one, 40%);
 
 
 // $th-bg-color: ;
@@ -81,6 +89,9 @@ header {
 		font-size: 1rem;
 		text-transform: uppercase;
 		letter-spacing: 2px;
+
+	   margin: 0;
+    padding: 0;
 	}
 
 	.MenuItem {
@@ -99,14 +110,14 @@ header {
 }
 
 footer {
-	border-top: 5px solid darken($header-bg-color, 20%);
+	// border-top: 5px solid darken($header-bg-color, 20%);
 	width: 100%;
 
 }
 
 
 .Main {
-	padding: 1rem 0 0 0;
+	padding: 1rem 1rem ;
 	min-height: 90%;
 }
 
@@ -115,6 +126,8 @@ table {
     width: 100%;
     border-spacing: 0;
 		font-size: 0.8rem;
+
+		margin-bottom: 1rem;
 }
 
 thead {
@@ -138,7 +151,7 @@ th {
     padding-top: 0.7rem;
     padding-bottom: 0.7rem;
 		text-transform: uppercase;
-		border-bottom: 5px solid $color-one;
+		border-bottom: 5px solid darken($color-four, 10%);
 }
 
 
@@ -151,21 +164,39 @@ tr:nth-child(even) {
 }
 
 td {
-	padding-top: 20px;
-	padding-bottom: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.SelectableTable tbody tr {
+    cursor: pointer;
+}
+
+.SelectableTable tbody tr:hover {
+    background-color: lighten($tr-odd-bg-color, 5%);
 }
 
 
+button {
+    padding: 0.3rem 0.5rem;
+    background-color: $button-bg-color;
+    color: $button-color;
+    border: 0;
 
-.Left {
-    width: 50%;
-    float: left;
+		font-size: 90%;
+    // box-shadow: 4px 4px 7px 0 rgba(208, 208, 208, 1);
 }
 
-.Right {
-    width: 50%;
-    float: left;
+button:hover {
+    cursor: pointer;
+    background-color: lighten($button-bg-color, 10%);
 }
+
+.RightAlign {
+	display: flex;
+	justify-content: flex-end;
+}
+
 
 .Title {
     display: flex;
@@ -176,13 +207,11 @@ td {
     padding: 0 0 0.5rem 0;
     margin: 0 0 1.5rem;
 
+
+
 }
 
-h1 {
-    flex: auto;
-    margin: 0;
-    padding: 0;
-}
+
 
 /* http://nicolasgallagher.com/micro-clearfix-hack */
 .Main:before,

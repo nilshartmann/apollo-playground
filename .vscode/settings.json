@@ -1,3 +1,7 @@
 // Place your settings in this file to overwrite default and user settings.
 {
+	"beautify.options": {
+		"preserve_newlines": true,
+    "max_preserve_newlines": 1
+	}
 }

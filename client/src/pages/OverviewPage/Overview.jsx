@@ -10,7 +10,7 @@ const Overview = ({ username }) => console.log('OVERVIEW') || <PageLayout usern
 					<th>Project</th>
 					<th>Owner</th>
 					<th>Last Activity</th>
-					<th>Open Activities</th>
+					<th><div className="Filter"><input type="text" placeholder="Filter" size={20}/></div></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -19,19 +19,24 @@ const Overview = ({ username }) => console.log('OVERVIEW') || <PageLayout usern
 					<td>Create GraphQL Talk</td>
 					<td>Nils</td>
 					<td>Write Sample</td>
-					<td>3</td>
+					<td style={{ width: '20%'}}><div className="ProgressBar" style={{ height: '90%', display: 'flex' }}>
+						<div className="created" style={{ width: '10%', 'textAlign': 'center' }}>1</div>
+						<div className="in-progress"  style={{ width: '30%', 'textAlign': 'center' }}>2</div>
+						<div className="finished" style={{ width: '60%', 'textAlign': 'center' }}>3</div>
+					</div></td>
+					{/*<td>3</td>*/}
 				</tr>
 				<tr>
 					<td>Book trip to Barcelona</td>
 					<td>Susi</td>
-					<td>Find good hostel</td>
-					<td>4</td>
+					<td colSpan={2}>Find good hostel</td>
+					{/*<td>4</td>*/}
 				</tr>
 				<tr>
 					<td>Clean house</td>
 					<td>Klaus</td>
-					<td>Clean the bathroom</td>
-					<td>2</td>
+					<td colSpan={2}>Clean the bathroom</td>
+					{/*<td>2</td>*/}
 				</tr>
 
 			</tbody>

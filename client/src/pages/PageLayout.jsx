@@ -7,9 +7,6 @@ const PageLayout = ({ username, children }) => <div className="Page">
 			<div className="MenuItem">Nils</div>
 			<div className="MenuItem">2 Projects</div>
 			<div className="MenuItem">3 Activities</div>
-		{/*<nav>
-			<div className="User">{username}</div>
-		</nav>*/}
 	</header>
 	<div className="Main">
 		{children}

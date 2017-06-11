@@ -12,10 +12,13 @@ import {
 import { MutationTypeDef, createMutations } from './mutations';
 
 const RootQuery = `
+	# Queries to get into the application model.
 	type RootQuery {
 		# Find a User by it's Id
     user(id: String!): User!
 		project(id: String!): Project!
+		# Return a list of all projects. Rembember: all projects are "public"
+		# (and not visible to only it's owner)
 		projects: [Project]
   }`;
 
@@ -60,6 +63,11 @@ const createResolveFunctions = (repositories: Repositories) => {
 
 			activities(project: Project) {
 				return activityRepository.findForProject(project);
+			},
+
+			latestActivity(project: Project): Activity {
+				// for now simply return the first activity
+				return activityRepository.findForProject(project)[0]
 			}
 		},
 		Activity: {

@@ -213,16 +213,22 @@ td {
 // =======================================================================================================================
 //                                        P R O G R E S S  B A R
 // =======================================================================================================================
-.ProgressBar {
+.ProjectProgressBar {
+		height: 90%;
+		display: flex;
     border: 1px solid $th-bg-color;
-    .created {
+
+    .CREATED {
         background-color: #EF9765;
+				text-align: center;
     }
-    .in-progress {
+    .STARTED {
         background-color: #FFB891;
+				text-align: center;
     }
-    .finished {
+    .FINISHED {
         background-color: #FFD3BB;
+				text-align: center;
     }
 }
 

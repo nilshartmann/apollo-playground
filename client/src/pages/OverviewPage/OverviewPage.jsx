@@ -4,13 +4,22 @@ import { gql, graphql } from 'react-apollo';
 import Overview from './Overview';
 import LoadingPage from '../LoadingPage';
 
-class OverviewPage extends React.Component {
-	render() {
-		console.log('props', this.props);
-		return <Overview username="Klaus Dieter" />
-	}
-}
+const OverviewPage = ({ data }) => console.log('data', data) || data.loading ? <LoadingPage /> : <Overview projects={data.projects} />
 
-const UserByIdQuery = gql`query {user(id: "U1") {name}}`;
+const ProjectOverviewQuery = gql`query ProjectOverviewQuery {
+  projects {
+    key,
+    title,
+    owner {
+      name, id
+    },
+    activities {
+      state
+    },
+    latestActivity {
+      id, title
+    }
+  }
+}`;
 
-export default graphql(UserByIdQuery)(OverviewPage);
+export default graphql(ProjectOverviewQuery)(OverviewPage);

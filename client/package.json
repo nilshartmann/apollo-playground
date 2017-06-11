@@ -8,5 +8,8 @@
     "dist": "../node_modules/.bin/webpack",
     "webpack": "../node_modules/.bin/webpack --watch",
     "devserver": "../node_modules/.bin/webpack-dev-server --content-base public/"
+  },
+  "dependencies": {
+    "react-apollo": "^1.4.2"
   }
 }

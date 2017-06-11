@@ -10,7 +10,7 @@ const Overview = ({ username }) => console.log('OVERVIEW') || <PageLayout usern
 					<th>Project</th>
 					<th>Owner</th>
 					<th>Last Activity</th>
-					<th><div className="Filter"><input type="text" placeholder="Filter" size={20}/></div></th>
+					<th><div className="Filter"><input type="text" placeholder="Filter" size={20}/><button><i className="material-icons">clear</i></button></div></th>
 				</tr>
 			</thead>
 			<tbody>

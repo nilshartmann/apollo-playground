@@ -4,6 +4,6 @@
 	],
 	"ignore": [
 	],
-	"exec": "ts-node ./server/src/server.js",
+	"exec": "ts-node ./src/server.js",
 	"ext": "js ts"
 }

@@ -50,12 +50,19 @@ button {
     color: $button-color;
     border: 0;
     font-size: 90%;
+
+    &:hover {
+        cursor: pointer;
+        background-color: lighten($button-bg-color, 10%);
+    }
+
+		&:hover,
+		&:active,
+		&:focus	{
+			outline: 0;
+		}
 }
 
-button:hover {
-    cursor: pointer;
-    background-color: lighten($button-bg-color, 10%);
-}
 
 #mount {
     width: 1200px;
@@ -90,7 +97,13 @@ header {
         padding-left: 1rem;
         padding-right: 1rem;
         font-size: 90%;
-        background-color: lighten($header-bg-color, 10%)
+        background-color: lighten($header-bg-color, 10%);
+
+        cursor: pointer;
+
+        &:hover {
+            background-color: lighten($header-bg-color, 20%);
+        }
     }
 }
 
@@ -121,18 +134,36 @@ table {
     .Filter {
         display: flex;
         justify-content: flex-end;
+        background-color: $tr-bg-color;
         input {
             padding: 0.3rem 0.5rem;
             background-color: $tr-bg-color;
             color: $text-color;
             border: 0;
-            &:hover,
-            &:focus {
-                background-color: $tr-selected-bg-color;
-                color: $text-color;
-            }
             &:focus {
                 outline: 0;
+            }
+        }
+
+        button {
+            padding: 0.3rem 0.5rem;
+            background-color: $tr-bg-color;
+            color: $text-color;
+            border: 0;
+            outline: 0;
+            i {
+                font-size: 100%;
+                color: $text-color;
+            }
+        }
+
+        &:hover,
+        &:focus {
+            background-color: $tr-selected-bg-color;
+
+            input,
+            button {
+                background-color: $tr-selected-bg-color;
             }
         }
     }
@@ -154,9 +185,10 @@ td {
 
 th {
     background-color: $th-bg-color;
-    padding-top: 0.7rem;
-    padding-bottom: 0.7rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
     text-transform: uppercase;
+    letter-spacing: 1px;
     border-bottom: 5px solid darken($color-four, 10%);
 }
 

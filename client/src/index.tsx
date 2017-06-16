@@ -2,6 +2,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
+import { BrowserRouter as Router } from 'react-router-dom';
+
 import './styles.scss';
 
 import { AppContainer } from "react-hot-loader";
@@ -28,7 +30,9 @@ const renderApp = (Component: typeof App) => {
 	ReactDOM.render(
 		<AppContainer>
 			<ApolloProvider client={graphQLClient}>
-				<Component />
+				 <Router>
+					<Component />
+				</Router>
 			</ApolloProvider>
 		</AppContainer>,
 		document.getElementById("mount")

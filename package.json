@@ -11,6 +11,7 @@
 	"dependencies": {
 		"@types/react": "^15.0.27",
 		"@types/react-dom": "^15.5.0",
+		"@types/react-router-dom": "^4.0.4",
 		"body-parser": "^1.17.2",
 		"cors": "^2.8.3",
 		"express": "^4.15.3",
@@ -19,7 +20,8 @@
 		"graphql-tools": "^0.11.0",
 		"react": "^15.5.4",
 		"react-apollo": "^1.4.2",
-		"react-dom": "^15.5.4"
+		"react-dom": "^15.5.4",
+		"react-router-dom": "^4.1.1"
 	},
 	"devDependencies": {
 		"@playlyfe/gql": "^2.3.0",

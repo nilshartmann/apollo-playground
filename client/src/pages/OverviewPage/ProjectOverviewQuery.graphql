@@ -1,0 +1,15 @@
+query ProjectOverview {
+  projects {
+    key,
+    title,
+    owner {
+      name, id
+    },
+    activities {
+      state
+    },
+    latestActivity {
+      id, title
+    }
+  }
+}

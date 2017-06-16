@@ -14,7 +14,7 @@ module.exports = {
 	devtool: 'inline-source-map',
 
 	resolve: {
-		extensions: ['.js', '.jsx', '.ts', '.tsx']
+		extensions: ['.js', '.jsx', '.ts', '.tsx' ]
 	},
 
 	plugins: [
@@ -42,6 +42,11 @@ module.exports = {
 				],
 				exclude: /node_modules/,
 			},
+			{
+      test: /\.(graphql|gql)$/,
+      exclude: /node_modules/,
+      loader: 'graphql-tag/loader',
+    },
 			{
 				enforce: "pre",
 				test: /\.js$/,

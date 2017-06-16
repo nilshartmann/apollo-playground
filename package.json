@@ -5,7 +5,8 @@
 	"license": "MIT",
 	"scripts": {
 		"clean": "rm -rf ./dist",
-		"start": "cd server && nodemon"
+		"start": "cd server && nodemon",
+		"codegen": "apollo-codegen introspect-schema http://localhost:3000/graphql --output api-schema.json && apollo-codegen generate client/src/**/*.graphql --schema api-schema.json --target typescript --output client/src/query-schema.ts"
 	},
 	"dependencies": {
 		"@types/react": "^15.0.27",

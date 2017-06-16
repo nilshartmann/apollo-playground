@@ -12,7 +12,7 @@
         {
           "kind": "OBJECT",
           "name": "RootQuery",
-          "description": "",
+          "description": "Queries to get into the application model.",
           "fields": [
             {
               "name": "user",
@@ -78,7 +78,7 @@
             },
             {
               "name": "projects",
-              "description": "",
+              "description": "Return a list of all projects. Rembember: all projects are \"public\"\n(and not visible to only it's owner)",
               "args": [],
               "type": {
                 "kind": "LIST",
@@ -321,6 +321,22 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "latestActivity",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Activity",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "inputFields": null,
@@ -351,22 +367,6 @@
             },
             {
               "name": "title",
-              "description": "",
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "description",
               "description": "",
               "args": [],
               "type": {

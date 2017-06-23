@@ -7,10 +7,24 @@ export type ActivityState =
   "FINISHED";
 
 
+export interface ActivityQueryVariables {
+  projectId: string;
+}
+
+export interface ActivityQuery {
+  project: {
+    activities: Array< {
+      id: string,
+      title: string,
+      state: ActivityState,
+    } > | null,
+  };
+}
+
 export interface ProjectOverviewQuery {
   // Return a list of all projects. Rembember: all projects are "public"
   projects: Array< {
-    key: string,
+    id: string,
     title: string,
     owner: {
       name: string,

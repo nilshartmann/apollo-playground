@@ -13,10 +13,10 @@ const USERS = [
 ];
 
 const PROJECTS = [
-	new Project('P1', 'GQLTALK', 'Create GraphQL Talk', 'Create GraphQL Talk', USERS[0]),
-	new Project('P2', 'TTBCN', 'Book Trip to Barcelona', 'Organize and book a nice 4-day trip to Barcelona in April', USERS[1]),
-	new Project('P3', 'CHOUSE', 'Clean the House', 'Its spring time! Time to clean up every room', USERS[2]),
-	new Project('P4', 'REFAPP', 'Refactor Application', 'We have some problems in our architecture, so we need to refactor it', USERS[0]),
+	new Project('P1', 'Create GraphQL Talk', 'Create GraphQL Talk', USERS[0]),
+	new Project('P2', 'Book Trip to Barcelona', 'Organize and book a nice 4-day trip to Barcelona in April', USERS[1]),
+	new Project('P3', 'Clean the House', 'Its spring time! Time to clean up every room', USERS[2]),
+	new Project('P4', 'Refactor Application', 'We have some problems in our architecture, so we need to refactor it', USERS[0]),
 ];
 
 const ACTIVITIES = [

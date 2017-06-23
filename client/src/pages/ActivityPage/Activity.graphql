@@ -1,0 +1,5 @@
+query Activity($projectId: String!) {
+  project(id:$projectId) {
+    activities {id, title, state}
+  }
+}

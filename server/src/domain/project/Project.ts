@@ -5,13 +5,13 @@ import { User } from '../user/User'
 export class Project {
 	userId: Id;
 
-	constructor(public id: Id, public key: string, public title: string, public description: string, user: User) {
+	constructor(public id: Id, public title: string, public description: string, user: User) {
 		this.userId = user.id;
 	}
 }
 
 export type ProjectRepository = {
-	createProject: ({ description, key, ownerId, title }: CreateProjectInput) => Project;
+	createProject: ({ description, ownerId, title }: CreateProjectInput) => Project;
 	updateProject: ({ id, description, title }: UpdateProjectInput) => Project;
 	findAll: () => Project[],
 	getById: (id: Id) => Project,
@@ -20,7 +20,6 @@ export type ProjectRepository = {
 }
 
 export type CreateProjectInput = {
-	key: string,
 	title: string,
 	description: string,
 	ownerId: Id

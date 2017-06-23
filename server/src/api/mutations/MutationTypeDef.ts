@@ -51,7 +51,6 @@ export const MutationTypeDef = `
 
 
 	input CreateProjectInput {
-		key: String!,
 		title: String!,
 		description: String!,
 		ownerId: ID!

@@ -1,6 +1,6 @@
 query ProjectOverview {
   projects {
-    key,
+		id,
     title,
     owner {
       name, id

@@ -21,7 +21,8 @@
 		"react": "^15.5.4",
 		"react-apollo": "^1.4.2",
 		"react-dom": "^15.5.4",
-		"react-router-dom": "^4.1.1"
+		"react-router-dom": "^4.1.1",
+		"react-tooltip": "^3.3.0"
 	},
 	"devDependencies": {
 		"@playlyfe/gql": "^2.3.0",

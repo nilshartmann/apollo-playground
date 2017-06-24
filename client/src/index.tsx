@@ -1,28 +1,12 @@
 // https://www.typescriptlang.org/docs/handbook/react-&-webpack.html
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-
-import { BrowserRouter as Router } from 'react-router-dom';
-
-import './styles.scss';
-
 import { AppContainer } from "react-hot-loader";
-
+import { ApolloProvider } from 'react-apollo';
+import './styles.scss';
+import { createGraphQLClient } from './createGraphQLClient';
 import App from './App';
-import { ApolloClient, ApolloProvider, createNetworkInterface } from 'react-apollo';
 
-// 	http://dev.apollodata.com/react/initialization.html#creating-client
-
-const createGraphQLClient = () => {
-	const networkInterface = createNetworkInterface({
-		uri: 'http://localhost:3000/graphql'
-	});
-	const client = new ApolloClient({
-		networkInterface: networkInterface
-	});
-
-	return client;
-}
 
 const graphQLClient = createGraphQLClient();
 
@@ -30,9 +14,7 @@ const renderApp = (Component: typeof App) => {
 	ReactDOM.render(
 		<AppContainer>
 			<ApolloProvider client={graphQLClient}>
-				 <Router>
 					<Component />
-				</Router>
 			</ApolloProvider>
 		</AppContainer>,
 		document.getElementById("mount")

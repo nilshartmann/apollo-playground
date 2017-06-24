@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import * as ReactTooltip from 'react-tooltip'
 
 
-import { Link } from 'react-router-dom';
+import { Link, historyPush } from '../../SimpleRouter';
 import PageLayout from './../PageLayout';
 
 const ProjectProgressBar = ({ activities }) => {
@@ -58,42 +58,33 @@ const ProjectRow = ({ project, onRowClick }) => <tr onClick={onRowClick}>
 
 export default class Overview extends React.Component {
 
-	// https://stackoverflow.com/a/35354844
-	static contextTypes = {
-		router: PropTypes.shape({
-			history: PropTypes.shape({
-				push: PropTypes.func.isRequired,
-				replace: PropTypes.func.isRequired
-			}).isRequired
-		}).isRequired
-	};
-
 	render() {
 		console.log('context', this.context);
 		const { projects } = this.props;
 		return (
-			<PageLayout>
-				<div className="Main">
-					<table className="SelectableTable">
-						<thead>
-							<tr>
-								<th>Project</th>
-								<th>Owner</th>
-								<th>Latest Activity</th>
-								<th><div className="Filter"><input type="text" placeholder="Filter" size={20} /><button><i className="material-icons">clear</i></button></div></th>
-							</tr>
-						</thead>
-						<tbody>
-							{projects.map(project => <ProjectRow key={project.id} project={project} onRowClick={() => console.log('click on ', project) ||  this.context.router.history.push(`/project/${project.id}/${project.latestActivity.id}`)} />)}
-						</tbody>
-					</table>
+			<div>
+				<table className="SelectableTable">
+					<thead>
+						<tr>
+							<th>Project</th>
+							<th>Owner</th>
+							<th>Latest Activity</th>
+							<th><div className="Filter"><input type="text" placeholder="Filter" size={20} /><button><i className="material-icons">clear</i></button></div></th>
+						</tr>
+					</thead>
+					<tbody>
+						{projects.map(project =>
+							<ProjectRow key={project.id}
+								project={project}
+								onRowClick={() => console.log('click on ', project) || historyPush(`/project/${project.id}/${project.latestActivity.id}`)} />)}
+					</tbody>
+				</table>
 
-					<div className="RightAlign">
-						<button>Add Project</button>
-					</div>
-
+				<div className="RightAlign">
+					<button>Add Project</button>
 				</div>
-			</PageLayout>
+
+			</div>
 		);
 	}
 }

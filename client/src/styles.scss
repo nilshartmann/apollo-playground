@@ -84,7 +84,7 @@ header {
     h1 {
         flex: auto;
         font-size: 1rem;
-				font-weight: 600;
+        font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 2px;
         margin: 0;
@@ -105,6 +105,15 @@ header {
         &:hover {
             background-color: lighten($header-bg-color, 20%);
         }
+    }
+
+    a,
+    a:visited {
+        color: $header-color;
+        text-decoration: none
+    }
+    a:hover {
+        text-decoration: underline;
     }
 }
 
@@ -137,7 +146,7 @@ footer {
 //                                        M A I N
 // =======================================================================================================================
 .Main {
-    padding: 1rem 1rem;
+    padding: 2rem 2rem;
     min-height: 90%;
 }
 

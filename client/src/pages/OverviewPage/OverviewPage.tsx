@@ -10,13 +10,14 @@ import { RouteComponentProps } from 'react-router-dom';
 import Overview from './Overview';
 import LoadingPage from '../LoadingPage';
 
+
 // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/13689
 // https://medium.com/@iktakahiro/react-stateless-functional-component-with-typescript-ce5043466011
 
-interface OverviewPageProps extends RouteComponentProps<any> {
+interface OverviewPageProps {
 	data: QueryProps & ProjectOverviewQuery
 }
 
 const OverviewPage: React.SFC<OverviewPageProps> = ({ data }) => console.log('data', data) || data.loading ? <LoadingPage /> : <Overview projects={data.projects} />
 
-export default graphql<{}, OverviewPageProps>(ProjectOverviewGql)(OverviewPage);
+export default graphql<{}, {}, OverviewPageProps>(ProjectOverviewGql)(OverviewPage);

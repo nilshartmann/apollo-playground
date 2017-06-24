@@ -1,13 +1,16 @@
 import * as React from 'react';
 import { Route } from 'react-router-dom';
+import PageLayout from './pages/PageLayout.jsx';
 import OverviewPage from './pages/OverviewPage';
 import ActivityPage from './pages/ActivityPage';
 
-const App = () => (
-	<div>
-		<Route exact path="/" component={OverviewPage} />
-		<Route exact path="/project/:projectId/:activityId" component={ActivityPage} />
-	</div>
-);
+import { SimpleRouter, RouteConfig } from './SimpleRouter';
+
+const routes: RouteConfig[] = [
+	{ path: '/', action: () => <OverviewPage /> },
+	{ path: '/project/:projectId/:activityId', action: ({projectId}) => <ActivityPage projectId={projectId} /> },
+]
+
+const App = () => <PageLayout username="bla"><SimpleRouter routes={routes} /></PageLayout>;
 
 export default App;

@@ -1,10 +1,21 @@
+fragment UserSummary on User {
+	id, name
+}
+
 query Activity($projectId: String!, $currentActivityId: ID!) {
   project(id:$projectId) {
+		id,
+		title,
     activities {id, title, state},
 		currentActivity: activity(activityId: $currentActivityId) {
-			id, title, state
+			id, title, state, description,
+			creator {
+				...UserSummary
+			},
+			assignee {
+				...UserSummary
+			}
 		}
   }
-
-
 }
+

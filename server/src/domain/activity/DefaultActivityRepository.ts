@@ -29,7 +29,7 @@ export const createDefaultActivityRepository = (userRepository: UserRepository,
 			const creator = userRepository.getById(activityInput.creatorId);
 
 			const newActivity = new Activity(
-				newId('A'), activityInput.title, project, creator, ActivityState.CREATED
+				newId('A'), activityInput.title, activityInput.description, project, creator, ActivityState.CREATED
 			);
 
 			ACTIVITIES.push(newActivity);

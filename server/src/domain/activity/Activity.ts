@@ -36,7 +36,7 @@ export class Activity {
 	creatorId: Id;
 	assigneeId: Id;
 
-	constructor(public id: Id, public title: string, project: Project, creator: User, public state: ActivityState) {
+	constructor(public id: Id, public title: string, public description: string, project: Project, creator: User, public state: ActivityState) {
 		this.projectId = project.id;
 		this.creatorId = creator.id;
 		this.assigneeId = creator.id;

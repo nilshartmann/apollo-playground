@@ -1,0 +1,30 @@
+// =======================================================================================================================
+//                                        C O L O R S
+// =======================================================================================================================
+$color-one: #385787;
+$color-two: #55C0AC;
+$color-three: #F1E9B1;
+$color-four: #EF9665;
+$color-five: #F44267;
+
+//
+$bg-color: #55C0AC;
+$text-color: rgba(0, 0, 0, 0.6);
+$text-color-bright: lighten($bg-color, 42%);
+
+//
+$bg-color-mount: $text-color-bright;
+
+// button
+$button-bg-color: $color-one;
+$button-color: $text-color-bright;
+
+// header
+$header-color: $text-color-bright;
+$header-bg-color: $color-five;
+
+// table
+$th-bg-color: $color-four;
+$th-color: $bg-color-mount;
+$tr-bg-color: lighten($th-bg-color, 20%);
+$tr-selected-bg-color: lighten($tr-bg-color, 5%);

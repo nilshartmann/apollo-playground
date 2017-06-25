@@ -6,7 +6,7 @@ type Project {
 		description: String!,
 		owner: User!,
 		activity(activityId: ID!): Activity!,
-		activities: [Activity],
+		activities: [Activity]!,
 		latestActivity: Activity!
   }
 `;

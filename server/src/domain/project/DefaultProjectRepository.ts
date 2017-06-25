@@ -6,10 +6,10 @@ export const createDefaultProjectRepository = (userRepository: UserRepository, i
 	const PROJECTS = [...initialProjects];
 
 	const DefaultProjectRepository = {
-		createProject: ({ description, key, ownerId, title }: CreateProjectInput): Project => {
+		createProject: ({ description, ownerId, title }: CreateProjectInput): Project => {
 			const owner = userRepository.getById(ownerId);
 
-			const newProject = new Project(newId('P'), key, title, description, owner);
+			const newProject = new Project(newId('P'), title, description, owner);
 			PROJECTS.push(newProject);
 			return newProject;
 		},

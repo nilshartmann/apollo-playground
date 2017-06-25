@@ -1,3 +1,5 @@
+import { lorem } from './lorems';
+
 import { User, createDefaultUserRepository } from './domain/user';
 import { Project, createDefaultProjectRepository } from './domain/project';
 import { Activity, ActivityState, createDefaultActivityRepository } from './domain/activity';
@@ -20,22 +22,22 @@ const PROJECTS = [
 ];
 
 const ACTIVITIES = [
-	new Activity('A1', 'Create a draft story', PROJECTS[0], USERS[0], ActivityState.STARTED),
-	new Activity('A2', 'Finish Example App', PROJECTS[0], USERS[0], ActivityState.CREATED),
-	new Activity('A3', 'Design Slides', PROJECTS[0], USERS[4], ActivityState.CREATED),
+	new Activity('A1', 'Create a draft story', lorem(0), PROJECTS[0], USERS[0], ActivityState.STARTED),
+	new Activity('A2', 'Finish Example App', lorem(1), PROJECTS[0], USERS[0], ActivityState.CREATED),
+	new Activity('A3', 'Design Slides', lorem(2), PROJECTS[0], USERS[4], ActivityState.CREATED),
 
-	new Activity('A4', 'Find a flight', PROJECTS[1], USERS[1], ActivityState.CREATED),
-	new Activity('A5', 'Book a hostel', PROJECTS[1], USERS[1], ActivityState.FINISHED),
+	new Activity('A4', 'Find a flight', lorem(3), PROJECTS[1], USERS[1], ActivityState.CREATED),
+	new Activity('A5', 'Book a hostel', lorem(4), PROJECTS[1], USERS[1], ActivityState.FINISHED),
 
-	new Activity('A6', 'Clean dining room', PROJECTS[2], USERS[2], ActivityState.CREATED),
-	new Activity('A7', 'Clean kitchen', PROJECTS[2], USERS[2], ActivityState.CREATED),
-	new Activity('A8', 'Empty trash bin', PROJECTS[2], USERS[2], ActivityState.FINISHED),
-	new Activity('A9', 'Clean windows', PROJECTS[2], USERS[2], ActivityState.STARTED),
+	new Activity('A6', 'Clean dining room', lorem(5), PROJECTS[2], USERS[2], ActivityState.CREATED),
+	new Activity('A7', 'Clean kitchen', lorem(6), PROJECTS[2], USERS[2], ActivityState.CREATED),
+	new Activity('A8', 'Empty trash bin', lorem(7), PROJECTS[2], USERS[2], ActivityState.FINISHED),
+	new Activity('A9', 'Clean windows', lorem(8), PROJECTS[2], USERS[2], ActivityState.STARTED),
 
-	new Activity('A10', 'Discuss problems with all developers', PROJECTS[3], USERS[0], ActivityState.STARTED),
-	new Activity('A11', 'Evaluate GraphQL for API', PROJECTS[3], USERS[5], ActivityState.STARTED),
-	new Activity('A12', 'Re-write tests in Jest', PROJECTS[3], USERS[4], ActivityState.STARTED),
-	new Activity('A13', 'Upgrade NodeJS version', PROJECTS[3], USERS[6], ActivityState.FINISHED),
+	new Activity('A10', 'Discuss problems with all developers', lorem(9), PROJECTS[3], USERS[0], ActivityState.STARTED),
+	new Activity('A11', 'Evaluate GraphQL for API', lorem(10), PROJECTS[3], USERS[5], ActivityState.STARTED),
+	new Activity('A12', 'Re-write tests in Jest', lorem(11), PROJECTS[3], USERS[4], ActivityState.STARTED),
+	new Activity('A13', 'Upgrade NodeJS version', lorem(12), PROJECTS[3], USERS[6], ActivityState.FINISHED),
 ]
 
 const userRepository = createDefaultUserRepository(USERS);

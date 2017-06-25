@@ -1,0 +1,93 @@
+.ActivityPage {
+
+    .Title {
+        h1 {
+            flex: auto;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0 0 2rem 0;
+            padding: 0;
+            border-bottom: 5px solid $text-color;
+            width: 100%;
+        }
+    }
+
+    .ActivitiesView {
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .ActivitiesViewMaster {
+        border-right: 5px solid darken($color-four, 10%);
+        background-color: $tr-bg-color;
+        margin-right: 1rem;
+				width: 20%;
+
+        a {
+            text-decoration: none;
+        }
+    }
+
+    .ActivityMasterItem {
+        background-color: $tr-bg-color;
+        color: $th-color;
+        border-bottom: 1px solid darken($color-four, 10%);
+
+        font-size: 0.8rem;
+        padding: 0.5rem;
+
+        cursor: pointer;
+
+        &:hover,
+        &.active {
+            background-color: $tr-selected-bg-color;
+            color: $text-color;
+            border-right: 0;
+        }
+    }
+
+    .ActivitiesViewDetail {
+        padding-left: 1rem; // background-color: $tr-selected-bg-color;
+        font-size: 80%;
+
+        max-width: 75%;
+
+				h1 {
+					padding: 0 0 0.8rem 0;
+					margin: 0;
+					line-height: 0.9;
+				}
+
+				.ActivitiesViewDetailField {
+					display: flex;
+					justify-content: flex-start;
+
+					h3 {
+						font-size: 1rem;
+						font-weight: 600;
+						flex: 1;
+					}
+					div {
+						font-size: 1rem;
+						font-weight: 600;
+						flex: 4;
+					}
+				}
+
+				h3 {
+					font-size: 1rem;
+					padding: 0;
+					margin: 0 0 0.2rem 0;
+				}
+
+        .ActivitiesViewDetailFieldName {
+            color: $th-bg-color;
+            font-weight: 600;
+        }
+
+				.Description {
+					font-size: 1rem;
+				}
+    }
+}

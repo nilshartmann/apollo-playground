@@ -9,15 +9,26 @@ export type ActivityState =
 
 export interface ActivityQueryVariables {
   projectId: string;
+  currentActivityId: string;
 }
 
 export interface ActivityQuery {
   project: {
+    id: string,
+    title: string,
     activities: Array< {
       id: string,
       title: string,
       state: ActivityState,
-    } > | null,
+    } >,
+    currentActivity: {
+      id: string,
+      title: string,
+      state: ActivityState,
+      description: string,
+      creator: UserSummaryFragment,
+      assignee: UserSummaryFragment,
+    },
   };
 }
 
@@ -32,11 +43,16 @@ export interface ProjectOverviewQuery {
     },
     activities: Array< {
       state: ActivityState,
-    } > | null,
+    } >,
     latestActivity: {
       id: string,
       title: string,
     },
   } > | null;
+}
+
+export interface UserSummaryFragment {
+  id: string;
+  name: string;
 }
 /* tslint:enable */

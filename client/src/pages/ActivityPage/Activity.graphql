@@ -1,5 +1,10 @@
-query Activity($projectId: String!) {
+query Activity($projectId: String!, $currentActivityId: ID!) {
   project(id:$projectId) {
-    activities {id, title, state}
+    activities {id, title, state},
+		currentActivity: activity(activityId: $currentActivityId) {
+			id, title, state
+		}
   }
+
+
 }

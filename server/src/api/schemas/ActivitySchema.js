@@ -8,6 +8,7 @@ enum ActivityState {
 type Activity {
 		id: ID!,
 		title: String!,
+		description: String!,
 		project: Project!,
 		creator: User!,
 		assignee: User!

@@ -65,6 +65,10 @@ const createResolveFunctions = (repositories: Repositories) => {
 				return activityRepository.findForProject(project);
 			},
 
+			activity(project: Project, { activityId }: { activityId: Id }) {
+				return activityRepository.getActivityInProject(project, activityId);
+			},
+
 			latestActivity(project: Project): Activity {
 				// for now simply return the first activity
 				return activityRepository.findForProject(project)[0]

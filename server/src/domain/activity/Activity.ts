@@ -47,6 +47,7 @@ export type ActivityRepository = {
 	getById: (id: Id) => Activity,
 	findForProject: (project: Project) => Activity[];
 	findForUser: (userId: Id) => Activity[];
+	getActivityInProject: (project: Project, activityId: Id) => Activity;
 	addActivity: (activityInput: AddActivityInput) => Activity;
 	assignActivity: (activityId: Id, assigneeId: Id) => Activity;
 	promoteActivity: (activityId: Id) => PromoteActivityPayload;

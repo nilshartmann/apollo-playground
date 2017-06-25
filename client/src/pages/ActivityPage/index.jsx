@@ -1,1 +1,1 @@
-export {default as default} from './ActivityPage';
+export {default as default} from './ActivityPageContainer';

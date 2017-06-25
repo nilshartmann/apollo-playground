@@ -22,6 +22,8 @@ export const createDefaultActivityRepository = (userRepository: UserRepository,
 		findForProject: (project: Project): Activity[] => ACTIVITIES.filter(a => a.projectId === project.id),
 		findForUser: (userId: Id): Activity[] => ACTIVITIES.filter(a => a.assigneeId == userId),
 
+		getActivityInProject: (project: Project, activityId: Id): Activity => console.log('ACTIVITYID', activityId) || DefaultActivityRepository.getById(activityId),
+
 		addActivity: (activityInput: AddActivityInput): Activity => {
 			const project = projectRepository.getById(activityInput.projectId);
 			const creator = userRepository.getById(activityInput.creatorId);

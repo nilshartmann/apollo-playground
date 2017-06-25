@@ -2,12 +2,10 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import * as ReactTooltip from 'react-tooltip'
 
-
 import { Link, historyPush } from '../../SimpleRouter';
 import PageLayout from './../PageLayout';
 
 const ProjectProgressBar = ({ activities }) => {
-
 	const activitiesByState = activities.reduce((last, current) => {
 		return {
 			...last,
@@ -56,35 +54,30 @@ const ProjectRow = ({ project, onRowClick }) => <tr onClick={onRowClick}>
 	<td style={{ width: '20%' }}><ProjectProgressBar activities={project.activities} /></td>
 </tr>;
 
-export default class Overview extends React.Component {
+const OverviewPage = ({ projects }) => (
+	<div>
+		<table className="SelectableTable">
+			<thead>
+				<tr>
+					<th>Project</th>
+					<th>Owner</th>
+					<th>Latest Activity</th>
+					<th><div className="Filter"><input type="text" placeholder="Filter" size={20} /><button><i className="material-icons">clear</i></button></div></th>
+				</tr>
+			</thead>
+			<tbody>
+				{projects.map(project =>
+					<ProjectRow key={project.id}
+						project={project}
+						onRowClick={() => historyPush(`/project/${project.id}/${project.latestActivity.id}`)} />)}
+			</tbody>
+		</table>
 
-	render() {
-		console.log('context', this.context);
-		const { projects } = this.props;
-		return (
-			<div>
-				<table className="SelectableTable">
-					<thead>
-						<tr>
-							<th>Project</th>
-							<th>Owner</th>
-							<th>Latest Activity</th>
-							<th><div className="Filter"><input type="text" placeholder="Filter" size={20} /><button><i className="material-icons">clear</i></button></div></th>
-						</tr>
-					</thead>
-					<tbody>
-						{projects.map(project =>
-							<ProjectRow key={project.id}
-								project={project}
-								onRowClick={() => console.log('click on ', project) || historyPush(`/project/${project.id}/${project.latestActivity.id}`)} />)}
-					</tbody>
-				</table>
+		<div className="RightAlign">
+			<button>Add Project</button>
+		</div>
 
-				<div className="RightAlign">
-					<button>Add Project</button>
-				</div>
+	</div>
+);
 
-			</div>
-		);
-	}
-}
+export default OverviewPage;

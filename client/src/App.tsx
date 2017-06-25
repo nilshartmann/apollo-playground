@@ -8,7 +8,7 @@ import { SimpleRouter, RouteConfig } from './SimpleRouter';
 
 const routes: RouteConfig[] = [
 	{ path: '/', action: () => <OverviewPage /> },
-	{ path: '/project/:projectId/:activityId', action: ({projectId}) => <ActivityPage projectId={projectId} /> },
+	{ path: '/project/:projectId/:activityId', action: ({projectId, activityId}) => <ActivityPage projectId={projectId} activityId={activityId} /> },
 ]
 
 const App = () => <PageLayout username="bla"><SimpleRouter routes={routes} /></PageLayout>;

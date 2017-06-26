@@ -8,7 +8,7 @@ query Activity($projectId: String!, $currentActivityId: ID!) {
 		title,
     activities {id, title, state},
 		currentActivity: activity(activityId: $currentActivityId) {
-			id, title, state, description,
+			id, title, state, description, nextAction
 			creator {
 				...UserSummary
 			},

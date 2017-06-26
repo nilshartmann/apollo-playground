@@ -1,5 +1,5 @@
-//  This file was automatically generated and should not be edited.
 /* tslint:disable */
+//  This file was automatically generated and should not be edited.
 
 export type ActivityState =
   "CREATED" |
@@ -7,52 +7,60 @@ export type ActivityState =
   "FINISHED";
 
 
-export interface ActivityQueryVariables {
-  projectId: string;
-  currentActivityId: string;
-}
+export type ActivityQueryVariables = {
+  projectId: string,
+  currentActivityId: string,
+};
 
-export interface ActivityQuery {
-  project: {
+export type ActivityQuery = {
+  project:  {
     id: string,
     title: string,
-    activities: Array< {
+    activities:  Array< {
       id: string,
       title: string,
       state: ActivityState,
     } >,
-    currentActivity: {
+    currentActivity:  {
       id: string,
       title: string,
       state: ActivityState,
       description: string,
-      creator: UserSummaryFragment,
-      assignee: UserSummaryFragment,
+      nextAction: string | null,
+      creator:  {
+        id: string,
+        name: string,
+      },
+      assignee:  {
+        id: string,
+        name: string,
+      },
     },
-  };
-}
+  },
+};
 
-export interface ProjectOverviewQuery {
+export type ProjectOverviewQuery = {
   // Return a list of all projects. Rembember: all projects are "public"
-  projects: Array< {
+  // (and not visible to only it's owner)
+  projects:  Array< {
     id: string,
     title: string,
-    owner: {
+    owner:  {
       name: string,
       id: string,
     },
-    activities: Array< {
+    activities:  Array< {
       state: ActivityState,
     } >,
-    latestActivity: {
+    latestActivity:  {
       id: string,
       title: string,
     },
-  } > | null;
-}
+  } > | null,
+};
 
-export interface UserSummaryFragment {
-  id: string;
-  name: string;
-}
+export type UserSummaryFragment = {
+  id: string,
+  name: string,
+};
 /* tslint:enable */

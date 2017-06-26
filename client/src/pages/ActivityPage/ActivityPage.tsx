@@ -14,6 +14,7 @@ type CurrentActivity = {
 	id: string,
 	title: string,
 	description: string,
+	nextAction: string|null,
 	state: ActivityState,
 	creator: UserSummaryFragment,
 	assignee: UserSummaryFragment
@@ -41,7 +42,7 @@ const ActivityMasterItem = ({ project, activity, onClick }: { project: CurrentPr
 	);
 }
 
-const ActivitiesViewDetailField = ({ label, value }: { label: string, value: string }) => (
+const ActivitiesViewDetailField = ({ label, value }: { label: string, value: string|React.ReactNode }) => (
 	<div className='ActivitiesViewDetailField'>
 		<h3 className="ActivitiesViewDetailFieldName">{label}</h3>
 		<div className="ActivitiesViewDetailFieldValue">{value}</div>
@@ -52,7 +53,7 @@ const ActivitiesViewDetail = ({ currentActivity }: { currentActivity: CurrentAct
 	return (
 		<div>
 			<ActivitiesViewDetailField label="Activity:" value={`${currentActivity.id}: ${currentActivity.title}`} />
-			<ActivitiesViewDetailField label="State:" value={currentActivity.state.toLowerCase()} />
+			<ActivitiesViewDetailField label="State:" value={<span>{currentActivity.state.toLowerCase()} {currentActivity.nextAction && currentActivity.nextAction}</span>} />
 			<ActivitiesViewDetailField label="Created by:" value={currentActivity.creator.name} />
 			<ActivitiesViewDetailField label="Assigned to:" value={currentActivity.assignee.name} />
 

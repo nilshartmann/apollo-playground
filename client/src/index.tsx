@@ -3,6 +3,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { AppContainer } from "react-hot-loader";
 import { ApolloProvider } from 'react-apollo';
+import 'react-select/scss/select.scss';
 import './styles/styles.scss';
 import { createGraphQLClient } from './createGraphQLClient';
 import App from './App';

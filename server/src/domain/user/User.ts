@@ -8,6 +8,7 @@ export class User {
 export type UserRepository = {
 	createUser: ({ email, login, name }: CreateUserInput) => User;
 	updateUser: ({ id, email, name }: UpdateUserInput) => User;
+	findAll: () => User[];
 	getById: (id: Id) => User;
 	findById: (id: Id) => Optional<User>
 }

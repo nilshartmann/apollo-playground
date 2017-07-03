@@ -21,6 +21,8 @@ export const createDefaultUserRepository = (initialUsers: User[]): UserRepositor
 			return user;
 		},
 
+		findAll: (): User[] => [...USERS],
+
 		getById: (id: Id): User => {
 			const user = USERS.find(user => user.id === id);
 			if (!user) {

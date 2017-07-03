@@ -19,6 +19,11 @@ export type ProjectRepository = {
 	projectsForUser: (userId: Id) => Project[];
 }
 
+export type ProjectConnection = {
+	totalCount: number,
+	projects: Project[]
+}
+
 export type CreateProjectInput = {
 	title: string,
 	description: string,

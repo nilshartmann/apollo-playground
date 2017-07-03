@@ -39,6 +39,20 @@ export type ActivityQuery = {
   },
 };
 
+export type UserQuery = {
+  // Return a list of all registered users
+  users:  Array< {
+    id: string,
+    name: string,
+    projects:  {
+      totalCount: number,
+    },
+    activities:  {
+      totalCount: number,
+    },
+  } >,
+};
+
 export type ProjectOverviewQuery = {
   // Return a list of all projects. Rembember: all projects are "public"
   // (and not visible to only it's owner)

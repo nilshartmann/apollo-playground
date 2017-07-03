@@ -5,8 +5,8 @@ import ProjectSchema from './schemas/ProjectSchema';
 import ActivitySchema from './schemas/ActivitySchema';
 
 import {
-	Id, User, Activity,
-	ActivityState, Project
+	Id, User, Activity, ActivityConnection,
+	ActivityState, Project, ProjectConnection
 } from '../domain';
 
 import { MutationTypeDef, createMutations } from './mutations';
@@ -14,6 +14,9 @@ import { MutationTypeDef, createMutations } from './mutations';
 const RootQuery = `
 	# Queries to get into the application model.
 	type RootQuery {
+		# Return a list of all registered users
+		users: [User!]!
+
 		# Find a User by it's Id
     user(id: String!): User!
 		project(id: String!): Project!
@@ -40,6 +43,10 @@ const createResolveFunctions = (repositories: Repositories) => {
 			user(obj: any, { id }: { id: Id }) {
 				return userRepository.findById(id);
 			},
+			users() {
+				return userRepository.findAll();
+			},
+
 			project(obj: any, { id }: { id: Id }) {
 				return projectRepository.findById(id);
 			},
@@ -49,11 +56,19 @@ const createResolveFunctions = (repositories: Repositories) => {
 		},
 
 		User: {
-			projects(obj: User) {
-				return projectRepository.projectsForUser(obj.id);
+			projects(obj: User): ProjectConnection {
+				const projects = projectRepository.projectsForUser(obj.id);
+				return {
+					projects,
+					totalCount: projects.length
+				}
 			},
-			activities(user: User) {
-				return activityRepository.findForUser(user.id)
+			activities(user: User): ActivityConnection {
+				const activities = activityRepository.findForUser(user.id);
+				return {
+					activities,
+					totalCount: activities.length
+				};
 			}
 		},
 		Project: {

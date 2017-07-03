@@ -10,6 +10,11 @@ export const ActivityState = {
 }
 export type ActivityState = (typeof ActivityState)[keyof typeof ActivityState];
 
+export type ActivityConnection = {
+	totalCount: number,
+	activities: Activity[]
+}
+
 export type AddActivityInput = {
 	title: string,
 	description: string,

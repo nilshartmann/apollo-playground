@@ -1,17 +1,17 @@
-
 // HTML
 * {
     box-sizing: border-box;
 }
 
 a,
-    a:visited {
-        color: $text-color;
-        text-decoration: none
-    }
-    a:hover {
-        text-decoration: underline;
-    }
+a:visited {
+    color: $text-color;
+    text-decoration: none
+}
+
+a:hover {
+    text-decoration: underline;
+}
 
 html {
     margin-top: 2rem;
@@ -84,6 +84,25 @@ header {
         &:hover {
             background-color: lighten($header-bg-color, 20%);
         }
+
+        select {
+            background: none;
+            border: 0;
+            color: $header-color;
+            outline: 0;
+            cursor: pointer;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            text-align: center;
+            text-align-last: center;
+            &:focus {
+                outline: 0
+            }
+        }
+
+				option {
+					cursor: pointer
+				}
     }
 
     a,

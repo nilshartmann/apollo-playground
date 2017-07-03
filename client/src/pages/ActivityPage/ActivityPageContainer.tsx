@@ -12,6 +12,8 @@ import LoadingPage from '../LoadingPage';
 // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/13689
 // https://medium.com/@iktakahiro/react-stateless-functional-component-with-typescript-ce5043466011
 
+
+
 type ActivityPageContainerOwnProps = {
 	projectId: string,
 	activityId: string
